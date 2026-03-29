@@ -1,0 +1,7 @@
+[
+  {"name": "AI features", "impact": 9, "confidence": 7, "ease": 6},
+  {"name": "Customer success", "impact": 8, "confidence": 8, "ease": 7},
+  {"name": "Core refactor", "impact": 7, "confidence": 6, "ease": 4},
+  {"name": "International expansion", "impact": 8, "confidence": 5, "ease": 3},
+  {"name": "Mobile app", "impact": 5, "confidence": 6, "ease": 5}
+]

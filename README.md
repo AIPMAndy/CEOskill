@@ -112,6 +112,35 @@
 
 ---
 
+## 快速上手
+
+### 1) 直接把它当成 CEO 幕僚来问
+
+示例：
+
+- 我们该不该进入日本市场？
+- 这次组织重组先动销售还是先动产品？
+- CTO 要离职去竞对，我现在 2 小时内先做什么？
+- 5 个项目只能做 2 个，怎么排优先级？
+
+### 2) 你应该期待的输出
+
+不是泛泛建议，而是：
+
+- 先判断决策类型
+- 明确约束、stakeholder、deadline
+- 给至少 3 个选项 + do nothing
+- 跑框架，而不是只喊观点
+- 输出 recommendation / risks / next steps
+
+### 3) 看例子最快
+
+如果你想 3 分钟理解它到底有什么用，直接看：
+
+- [examples/mna-acquisition-decision.md](./examples/mna-acquisition-decision.md)
+- [examples/cto-departure-crisis.md](./examples/cto-departure-crisis.md)
+- [examples/prioritization-five-initiatives.md](./examples/prioritization-five-initiatives.md)
+
 ## 快速理解它的工作方式
 
 它不是直接给结论，而是按这种结构推进：
@@ -139,6 +168,26 @@
 - IRR
 
 这些脚本的价值不是“金融建模有多高级”，而是让 skill 在处理高层决策时，**不只停留在语言层面**。
+
+### 现在可以直接命令行运行
+
+例如：
+
+```bash
+# ICE 评分
+python scripts/analysis_tools.py ice --json '[
+  {"name":"AI 功能","impact":9,"confidence":7,"ease":6},
+  {"name":"客户成功","impact":8,"confidence":8,"ease":7}
+]'
+
+# 决策矩阵
+python scripts/analysis_tools.py decision-matrix --file examples/decision-matrix.json
+
+# NPV
+python scripts/analysis_tools.py npv --rate 0.12 --json '[-3000000, 1200000, 1500000, 1800000]'
+```
+
+这让它更像一个**可执行的 decision toolkit**，而不只是一个 prompt 包。
 
 ---
 

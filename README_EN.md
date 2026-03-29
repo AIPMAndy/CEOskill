@@ -112,6 +112,33 @@ This skill is especially useful for questions like:
 
 ---
 
+## Quick start
+
+### 1) Ask it like you would ask a strong chief of staff
+
+Examples:
+
+- Should we enter Japan this year?
+- We can only fund 2 of 5 initiatives. How should we prioritize?
+- Our CTO may leave for a competitor. What do we do in the next 2 hours?
+- Should we acquire this smaller competitor now or wait?
+
+### 2) What you should expect back
+
+Not generic business advice, but:
+
+- decision classification first
+- explicit constraints, stakeholders, and deadline
+- at least 3 options plus a do-nothing baseline
+- framework-based reasoning, not just opinions
+- recommendation, risks, and next steps
+
+### 3) The fastest way to understand it: examples
+
+- [examples/mna-acquisition-decision.md](./examples/mna-acquisition-decision.md)
+- [examples/cto-departure-crisis.md](./examples/cto-departure-crisis.md)
+- [examples/prioritization-five-initiatives.md](./examples/prioritization-five-initiatives.md)
+
 ## How it works
 
 Instead of jumping straight to a conclusion, it typically goes through this flow:
@@ -139,6 +166,24 @@ The repository includes `scripts/analysis_tools.py` with lightweight but practic
 - IRR
 
 Their value is not to become a full finance stack, but to make the skill **less purely verbal** when high-stakes decisions need numbers.
+
+### You can now run them from the CLI
+
+```bash
+# ICE scoring
+python scripts/analysis_tools.py ice --json '[
+  {"name":"AI features","impact":9,"confidence":7,"ease":6},
+  {"name":"Customer success","impact":8,"confidence":8,"ease":7}
+]'
+
+# Decision matrix
+python scripts/analysis_tools.py decision-matrix --file examples/decision-matrix.json
+
+# NPV
+python scripts/analysis_tools.py npv --rate 0.12 --json '[-3000000, 1200000, 1500000, 1800000]'
+```
+
+That makes this repo feel more like an **executable decision toolkit**, not only a prompt artifact.
 
 ---
 

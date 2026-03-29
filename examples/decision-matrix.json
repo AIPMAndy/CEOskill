@@ -1,0 +1,41 @@
+{
+  "criteria": [
+    {"name": "revenue", "weight": 0.3},
+    {"name": "risk", "weight": 0.25},
+    {"name": "speed", "weight": 0.2},
+    {"name": "team_fit", "weight": 0.15},
+    {"name": "strategic", "weight": 0.1}
+  ],
+  "options": [
+    {
+      "name": "Launch AI copilot",
+      "scores": {
+        "revenue": 8,
+        "risk": 5,
+        "speed": 7,
+        "team_fit": 7,
+        "strategic": 9
+      }
+    },
+    {
+      "name": "Expand into Japan",
+      "scores": {
+        "revenue": 7,
+        "risk": 4,
+        "speed": 4,
+        "team_fit": 5,
+        "strategic": 8
+      }
+    },
+    {
+      "name": "Double down on customer success",
+      "scores": {
+        "revenue": 6,
+        "risk": 8,
+        "speed": 8,
+        "team_fit": 9,
+        "strategic": 7
+      }
+    }
+  ]
+}

@@ -6,9 +6,12 @@ used from Python code execution during decision analysis.
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import random
+import sys
+from pathlib import Path
 from typing import Iterable, Sequence
 
 
@@ -269,25 +272,111 @@ def irr(cash_flows: Iterable[float], precision: float = 0.0001, max_iterations: 
     return round(mid, 4)
 
 
-if __name__ == "__main__":
-    scenarios = [
-        {"name": "Success", "probability": 0.4, "outcome_range": [3000000, 8000000]},
-        {"name": "Moderate", "probability": 0.35, "outcome_range": [500000, 2000000]},
-        {"name": "Failure", "probability": 0.25, "outcome_range": [-3000000, -500000]},
-    ]
-    print("=== Monte Carlo Example ===")
-    print(json.dumps(monte_carlo_simulation(scenarios, seed=42), indent=2))
+def _load_json_input(raw: str | None, file_path: str | None):
+    if raw and file_path:
+        raise ValidationError("Use either --json or --file, not both")
+    if raw:
+        return json.loads(raw)
+    if file_path:
+        return json.loads(Path(file_path).read_text(encoding="utf-8"))
+    raise ValidationError("Either --json or --file is required")
 
-    criteria = [
-        {"name": "revenue", "weight": 0.3},
-        {"name": "risk", "weight": 0.25},
-        {"name": "speed", "weight": 0.2},
-        {"name": "team_fit", "weight": 0.15},
-        {"name": "strategic", "weight": 0.1},
-    ]
-    options = [
-        {"name": "Option A", "scores": {"revenue": 8, "risk": 4, "speed": 9, "team_fit": 7, "strategic": 8}},
-        {"name": "Option B", "scores": {"revenue": 6, "risk": 8, "speed": 5, "team_fit": 9, "strategic": 7}},
-    ]
-    print("\n=== Decision Matrix Example ===")
-    print(json.dumps(decision_matrix(criteria, options), indent=2))
+
+def _build_cli() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Decision analysis helpers for CEO Skill",
+    )
+    subparsers = parser.add_subparsers(dest="command", required=False)
+
+    monte = subparsers.add_parser("monte-carlo", help="Run Monte Carlo simulation")
+    monte.add_argument("--json", help="Inline JSON payload containing scenario list")
+    monte.add_argument("--file", help="Path to JSON payload file")
+    monte.add_argument("--simulations", type=int, default=DEFAULT_SIMULATIONS)
+    monte.add_argument("--seed", type=int)
+
+    matrix = subparsers.add_parser("decision-matrix", help="Run weighted decision matrix")
+    matrix.add_argument("--json", help='Inline JSON payload with {"criteria": [...], "options": [...]}')
+    matrix.add_argument("--file", help="Path to JSON payload file")
+
+    ice = subparsers.add_parser("ice", help="Run ICE scoring")
+    ice.add_argument("--json", help="Inline JSON payload containing initiative list")
+    ice.add_argument("--file", help="Path to JSON payload file")
+
+    ev = subparsers.add_parser("expected-value", help="Run expected value analysis")
+    ev.add_argument("--json", help="Inline JSON payload containing option list")
+    ev.add_argument("--file", help="Path to JSON payload file")
+
+    npv_parser = subparsers.add_parser("npv", help="Calculate NPV")
+    npv_parser.add_argument("--rate", required=True, type=float, help="Discount rate, e.g. 0.12")
+    npv_parser.add_argument("--json", help="Inline JSON array of cash flows")
+    npv_parser.add_argument("--file", help="Path to JSON array file")
+
+    irr_parser = subparsers.add_parser("irr", help="Calculate IRR")
+    irr_parser.add_argument("--json", help="Inline JSON array of cash flows")
+    irr_parser.add_argument("--file", help="Path to JSON array file")
+    irr_parser.add_argument("--precision", type=float, default=0.0001)
+    irr_parser.add_argument("--max-iterations", type=int, default=1000)
+
+    return parser
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = _build_cli()
+    args = parser.parse_args(argv)
+
+    if not args.command:
+        scenarios = [
+            {"name": "Success", "probability": 0.4, "outcome_range": [3000000, 8000000]},
+            {"name": "Moderate", "probability": 0.35, "outcome_range": [500000, 2000000]},
+            {"name": "Failure", "probability": 0.25, "outcome_range": [-3000000, -500000]},
+        ]
+        criteria = [
+            {"name": "revenue", "weight": 0.3},
+            {"name": "risk", "weight": 0.25},
+            {"name": "speed", "weight": 0.2},
+            {"name": "team_fit", "weight": 0.15},
+            {"name": "strategic", "weight": 0.1},
+        ]
+        options = [
+            {"name": "Option A", "scores": {"revenue": 8, "risk": 4, "speed": 9, "team_fit": 7, "strategic": 8}},
+            {"name": "Option B", "scores": {"revenue": 6, "risk": 8, "speed": 5, "team_fit": 9, "strategic": 7}},
+        ]
+        print("=== Monte Carlo Example ===")
+        print(json.dumps(monte_carlo_simulation(scenarios, seed=42), indent=2))
+        print("\n=== Decision Matrix Example ===")
+        print(json.dumps(decision_matrix(criteria, options), indent=2))
+        print("\nTip: run with --help to use the CLI.")
+        return 0
+
+    try:
+        if args.command == "monte-carlo":
+            payload = _load_json_input(args.json, args.file)
+            result = monte_carlo_simulation(payload, num_simulations=args.simulations, seed=args.seed)
+        elif args.command == "decision-matrix":
+            payload = _load_json_input(args.json, args.file)
+            result = decision_matrix(payload["criteria"], payload["options"])
+        elif args.command == "ice":
+            payload = _load_json_input(args.json, args.file)
+            result = ice_scoring(payload)
+        elif args.command == "expected-value":
+            payload = _load_json_input(args.json, args.file)
+            result = expected_value(payload)
+        elif args.command == "npv":
+            payload = _load_json_input(args.json, args.file)
+            result = {"npv": npv(payload, args.rate)}
+        elif args.command == "irr":
+            payload = _load_json_input(args.json, args.file)
+            result = {"irr": irr(payload, precision=args.precision, max_iterations=args.max_iterations)}
+        else:
+            parser.error(f"Unknown command: {args.command}")
+            return 2
+    except (ValidationError, KeyError, json.JSONDecodeError, OSError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
