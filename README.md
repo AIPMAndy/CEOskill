@@ -15,6 +15,21 @@
 
 ---
 
+## 一句话定位
+
+**不是更会说的 CEO prompt，而是更会拆高风险决策的 AI skill。**
+
+如果你希望 AI 在高层决策场景里少一点空话、多一点结构、trade-off、偏差检查和 next step，这个项目就是为这个问题做的。
+
+## 5 秒判断：它适不适合你
+
+如果你经常遇到下面这些问题，它就适合：
+
+- `该不该做`：进入新市场、收购、裁撤、组织重组
+- `先做哪个`：多个项目争资源、预算分配、优先级排序
+- `现在怎么办`：事故、核心高管离职、PR 危机
+- `别人会怎么反应`：竞对、董事会、投资人、管理层、关键员工
+
 ## 这是什么
 
 `ceo-skill` 是一个给 AI agent 用的 **CEO 决策辅助 Skill**。
@@ -51,6 +66,17 @@
 **把“高层决策建议”从模糊对话，变成结构化决策流程。**
 
 ---
+
+## 你会得到什么
+
+和普通顾问式输出相比，这个 skill 默认逼自己做到：
+
+- 先分类决策，而不是直接站队
+- 至少给 3 个可比选项 + do nothing
+- 明确 trade-off，而不是只给一个漂亮结论
+- 检查认知偏差，而不是顺着当前情绪走
+- 预判竞争与 stakeholder 反应，而不是只看自己视角
+- 给 next steps，而不是停在观点层
 
 ## 为什么它和普通 strategy prompt 不一样
 
@@ -140,6 +166,7 @@
 - [examples/mna-acquisition-decision.md](./examples/mna-acquisition-decision.md)
 - [examples/cto-departure-crisis.md](./examples/cto-departure-crisis.md)
 - [examples/prioritization-five-initiatives.md](./examples/prioritization-five-initiatives.md)
+- [examples/usage-prompts.md](./examples/usage-prompts.md)
 
 ## 快速理解它的工作方式
 
@@ -191,6 +218,24 @@ python scripts/analysis_tools.py npv --rate 0.12 --json '[-3000000, 1200000, 150
 
 ---
 
+## 证明它不是空架子
+
+你可以从 3 层快速判断这个仓库是不是“真的能用”：
+
+### 1) 有流程
+- [SKILL.md](./SKILL.md) 不是一句 prompt，而是完整决策流程
+
+### 2) 有参考体系
+- [references/frameworks.md](./references/frameworks.md)
+- [references/cognitive-debiasing.md](./references/cognitive-debiasing.md)
+- [references/stakeholder-playbook.md](./references/stakeholder-playbook.md)
+- [references/war-gaming.md](./references/war-gaming.md)
+
+### 3) 有例子 + 有脚本
+- [examples/](./examples/README.md) 里有具体场景
+- [scripts/analysis_tools.py](./scripts/analysis_tools.py) 可以直接跑定量分析
+- [evals/evals.json](./evals/evals.json) 里有基础评测样例
+
 ## 当前最有价值的地方
 
 如果你第一次看这个项目，建议重点看：
@@ -202,6 +247,17 @@ python scripts/analysis_tools.py npv --rate 0.12 --json '[-3000000, 1200000, 150
 5. [scripts/analysis_tools.py](./scripts/analysis_tools.py) — 定量分析辅助
 
 ---
+
+## Runtime 兼容说明
+
+如果你想把它接到不同 agent runtime 里，先看：
+
+- [RUNTIME.md](./RUNTIME.md)
+
+核心原则是：
+- 文本能力就能跑基本版
+- 有 web search 会更强
+- 有 Python / code execution 时，定量分析价值会明显上升
 
 ## Roadmap
 

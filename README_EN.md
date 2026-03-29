@@ -15,6 +15,21 @@
 
 ---
 
+## One-line positioning
+
+**Not a CEO prompt that sounds smarter — a skill that breaks down high-stakes decisions better.**
+
+If you want AI to produce less vague business talk and more structure, trade-offs, debiasing, and executable next steps in executive contexts, this repo is built for that job.
+
+## 5-second fit check
+
+This is for you if you often face decisions like:
+
+- `Should we do this?` — market entry, acquisition, restructuring, shutdown
+- `What comes first?` — prioritization, budget allocation, resource conflicts
+- `What do we do right now?` — outage, executive departure, PR crisis
+- `How will others react?` — competitors, board, investors, leadership team, key employees
+
 ## What is this?
 
 `ceo-skill` is a **CEO decision-support skill for AI agents**.
@@ -51,6 +66,17 @@ The core value of `ceo-skill` is this:
 **It turns executive advice from loose conversation into a structured decision process.**
 
 ---
+
+## What you get from it
+
+Compared with generic consultant-style output, this skill tries to force a higher bar by default:
+
+- classify the decision before taking a position
+- generate at least 3 comparable options plus do-nothing
+- surface trade-offs instead of hiding them behind a polished answer
+- check cognitive bias instead of following the current narrative
+- predict competitor and stakeholder reactions, not just internal logic
+- end with next steps, not just opinions
 
 ## Why this is different from a generic strategy prompt
 
@@ -138,6 +164,7 @@ Not generic business advice, but:
 - [examples/mna-acquisition-decision.md](./examples/mna-acquisition-decision.md)
 - [examples/cto-departure-crisis.md](./examples/cto-departure-crisis.md)
 - [examples/prioritization-five-initiatives.md](./examples/prioritization-five-initiatives.md)
+- [examples/usage-prompts.md](./examples/usage-prompts.md)
 
 ## How it works
 
@@ -187,6 +214,24 @@ That makes this repo feel more like an **executable decision toolkit**, not only
 
 ---
 
+## Proof this is more than a prompt wrapper
+
+You can sanity-check the repo from three angles:
+
+### 1) It has process
+- [SKILL.md](./SKILL.md) is a decision workflow, not a one-line prompt
+
+### 2) It has a reference system
+- [references/frameworks.md](./references/frameworks.md)
+- [references/cognitive-debiasing.md](./references/cognitive-debiasing.md)
+- [references/stakeholder-playbook.md](./references/stakeholder-playbook.md)
+- [references/war-gaming.md](./references/war-gaming.md)
+
+### 3) It has examples + executable helpers
+- [examples/](./examples/README.md) for realistic scenarios
+- [scripts/analysis_tools.py](./scripts/analysis_tools.py) for quantitative helpers
+- [evals/evals.json](./evals/evals.json) for baseline evaluation cases
+
 ## Best places to start
 
 If this is your first time here, begin with:
@@ -198,6 +243,17 @@ If this is your first time here, begin with:
 5. [scripts/analysis_tools.py](./scripts/analysis_tools.py) — quantitative helpers
 
 ---
+
+## Runtime compatibility
+
+If you want to use this across different agent runtimes, start here:
+
+- [RUNTIME.md](./RUNTIME.md)
+
+Core idea:
+- text-only runtimes can still use the workflow
+- web search makes strategic output stronger
+- Python / code execution unlocks much better quantitative support
 
 ## Roadmap
 
