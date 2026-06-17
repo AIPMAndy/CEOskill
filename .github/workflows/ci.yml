@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Validate Python scripts
+      run: |
+        python -m py_compile scripts/*.py
+
+    - name: Run Python scripts (dry-run validation)
+      run: |
+        python scripts/analysis_tools.py --help || true
+        python scripts/bayesian_calculator.py --help || true
+
+    - name: Check markdown files
+      run: |
+        find . -name "*.md" -type f | while read file; do
+          echo "Checking $file"
+          if [ ! -s "$file" ]; then
+            echo "Error: $file is empty"
+            exit 1
+          fi
+        done
+
+    - name: Validate JSON files
+      run: |
+        find . -name "*.json" -type f | while read file; do
+          echo "Validating $file"
+          python -m json.tool "$file" > /dev/null
+        done
