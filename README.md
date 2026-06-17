@@ -14,6 +14,21 @@
 
 ---
 
+## 👤 关于作者
+
+**我是 Andy**，前腾讯/百度 AI 产品专家 → 大模型独角兽 VP → 持续创业者。
+
+过去 18 个月，我用 AI 做了 100+ 个重大决策：
+- ✅ [是否 All-in AI Agent 生态？](./examples/real-andy-case-ai-agent-pivot.md)（结果：建立了中文 AI Skill 第一入口，116 stars）
+- ✅ 63 个项目如何砍到 15 个？（优先级排序）
+- ✅ CEOskill 如何定价？（$0 vs $99 vs $999）
+
+**这个工具是我提炼的决策方法论**：不是让 AI 给建议，而是让 AI 拆 trade-off、查偏差、推演竞争。
+
+📖 延伸阅读：[为什么 CEOskill 只有 15 stars？](./examples/meta-why-only-15-stars.md)（以及如何改变）
+
+---
+
 ## 💡 一句话价值
 
 **普通 AI 会说"建议你做市场调研"，CEO Skill 会说"这是 One-Way Door 决策，你有确认偏差，这里有 4 个选项的 trade-off，竞对可能这样反击，董事会里 2 票支持 1 票反对"。**
@@ -196,23 +211,38 @@ CEO 决策最大的敌人不是信息不足，而是认知偏差：
 
 ## 🎬 真实案例
 
+### 🔥 Andy 的真实决策（NEW）
+- **[是否 All-in AI Agent 生态？](./examples/real-andy-case-ai-agent-pivot.md)**
+  - 背景：2024年1月，手上有10+个SaaS项目，OpenClaw刚开源
+  - 决策：Barbell Strategy（90% AI Agent + 10% 保险）
+  - 结果：18个月后，awesome系列116 stars，建立了中文AI Skill生态位
+  - **完整展示：决策分类 → 偏差检查 → 选项对比 → 竞争推演 → 贝叶斯分析 → 复盘**
+
+- **[为什么 CEOskill 只有 15 stars？](./examples/meta-why-only-15-stars.md)**
+  - 问题：产品价值最高，但star最少
+  - 根因：目标用户不在GitHub + 缺少个人品牌 + 缺少社交证明
+  - 行动：内容营销 + 真实案例 + 商业化路径
+  - **Meta案例：用CEOskill分析CEOskill本身**
+
 ### 战略决策
 - 进入新市场？收购还是自建？业务止损还是继续投？
-- 📄 示例：[M&A 收购决策](./examples/mna-acquisition-decision.md)
+- 📄 示例：[M&A 收购决策](./examples/mna-acquisition-decision.md)（待补充）
 
 ### 资源分配
 - 多个项目争资源，先做哪个？预算怎么分配？
-- 📄 示例：[5 个项目优先级排序](./examples/prioritization-five-initiatives.md)
+- 📄 示例：[5 个项目优先级排序](./examples/prioritization-five-initiatives.md)（待补充）
 
 ### 危机响应
 - 核心高管离职、线上事故、PR 危机怎么处理？
-- 📄 示例：[CTO 离职危机](./examples/cto-departure-crisis.md)
+- 📄 示例：[CTO 离职危机](./examples/cto-departure-crisis.md)（待补充）
 
 ### 组织与政治
 - 董事会、投资人、管理层怎么对齐？组织调整怎么管？
+- 📄 示例：待补充
 
 ### 竞争推演
 - 如果我们做 X，竞对会怎么反应？
+- 📄 示例：待补充
 
 📂 更多示例：[`examples/`](./examples/)
 
