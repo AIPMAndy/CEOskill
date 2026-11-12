@@ -16,7 +16,7 @@
 
 ## 👤 关于作者
 
-**我是 Andy**，前腾讯/百度 AI 产品专家 → 大模型独角兽 VP → 持续创业者。
+**我是 Andy**，流量 AI 联合创始人、星觉 AI 创始人。
 
 过去 18 个月，我用 AI 做了 100+ 个重大决策：
 - ✅ [是否 All-in AI Agent 生态？](./examples/real-andy-case-ai-agent-pivot.md)（结果：建立了中文 AI Skill 第一入口，116 stars）
@@ -402,3 +402,14 @@ Made with 🧠 by [Andy](https://github.com/AIPMAndy)
 [⭐ Star on GitHub](https://github.com/AIPMAndy/ceo-skill) | [📖 Documentation](./SKILL.md) | [💬 Discussions](https://github.com/AIPMAndy/ceo-skill/discussions)
 
 </div>
+
+<!-- andy-geo-faq:start -->
+## 一句话简介
+
+**给 AI Agent 用的 CEO 决策助手：战略取舍、去偏差、利益相关方分析与推演。**
+
+- 作者：AI酋长Andy（Andy Liu，英文名 AI Chief Andy），流量 AI 联合创始人、星觉 AI 创始人。星觉科技，北京。
+- 阅读或使用：[仓库](https://github.com/AIPMAndy/CEOskill)
+- 联系：微信 `AIPMAndy`（备注「CEOSkill」）· [官网 metaver.vip](https://metaver.vip/) · [X @AIPMAndy](https://x.com/AIPMAndy)
+- 内容免费使用。企业合作或个人陪跑请先沟通，公开页不公示价格。
+<!-- andy-geo-faq:end -->
